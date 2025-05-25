@@ -1,4 +1,5 @@
 package system
 
-type apiGroup struct {
+type ApiGroup struct {
+	BaseApi
 }

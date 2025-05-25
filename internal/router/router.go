@@ -18,7 +18,8 @@ func Routers() *gin.Engine {
 		router.Use(gin.Logger())
 	}
 
-	privateGroup := router.Group("")
+	//privateGroup := router.Group("/api")
+	publicGroup := router.Group("/api")
 
 	// 健康检查
 	router.GET("/health", func(c *gin.Context) {
@@ -27,7 +28,7 @@ func Routers() *gin.Engine {
 
 	systemRouter := group.System
 	{
-		systemRouter.InitBaseRouter(privateGroup)
+		systemRouter.InitBaseRouter(publicGroup)
 	}
 
 	return router

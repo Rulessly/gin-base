@@ -12,7 +12,7 @@ const (
 	superAdmin = 0x111 //超级管理员
 )
 
-const sign = "waste-recycle-2025"
+const sign = "guava"
 
 type CustomClaims struct {
 	UserID string `json:"userID"`
