@@ -3,7 +3,7 @@ mysql:
   port: 3306
   user: root
   password: sjk12345
-  name: cloud
+  name: guava
   config: charset=utf8mb4&parseTime=True&loc=Local
   max-idle: 10
   max-open: 100
