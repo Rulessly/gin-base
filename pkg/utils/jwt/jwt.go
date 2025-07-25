@@ -7,9 +7,9 @@ import (
 )
 
 const (
-	customer   = 0x000 //普通用户
-	admin      = 0x011 //普通管理员
-	superAdmin = 0x111 //超级管理员
+	Customer   = 0x000 //普通用户
+	Admin      = 0x011 //普通管理员
+	SuperAdmin = 0x111 //超级管理员
 )
 
 const sign = "guava"

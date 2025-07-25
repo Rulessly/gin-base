@@ -8,7 +8,7 @@ import (
 var Config *config
 
 type config struct {
-	Mysql MysqlConfig `mapstructure:"mysql"`
+	Postgres PostgresConfig `mapstructure:"postgres"`
 }
 
 func InitViper() {

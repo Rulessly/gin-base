@@ -8,8 +8,8 @@ import (
 )
 
 func main() {
-	config.InitViper()       //初始化配置文件
-	database.InitGormMysql() //初始化mysql
+	config.InitViper()      //初始化配置文件
+	database.InitPostgres() //初始化postgres
 
 	if err := router.Routers().Run(":8080"); err != nil {
 		log.Fatalln(err)

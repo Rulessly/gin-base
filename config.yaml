@@ -1,9 +1,9 @@
-mysql:
+postgres:
   host: localhost
-  port: 3306
-  user: root
+  port: 5432
+  user: postgres
   password: sjk12345
-  name: guava
-  config: charset=utf8mb4&parseTime=True&loc=Local
+  dbname: postgres
+  config: Timezone=Asia/Shanghai
   max-idle: 10
   max-open: 100

@@ -4,7 +4,9 @@ import (
 	"github.com/gin-gonic/gin"
 	systemReq "github.com/rulessly/gin-base/internal/request/system"
 	"github.com/rulessly/gin-base/internal/response"
+	"github.com/rulessly/gin-base/internal/service/system"
 	"github.com/rulessly/gin-base/pkg/utils/captcha"
+	"github.com/rulessly/gin-base/pkg/utils/jwt"
 	"github.com/spf13/cast"
 	"slices"
 	"time"
@@ -13,26 +15,36 @@ import (
 type BaseApi struct {
 }
 
+var systemUserService = system.NewSystemUserService()
+
 // Login 账号密码登录
 func (b *BaseApi) Login(ctx *gin.Context) {
-
+	var req systemReq.LoginRequest
+	if err := ctx.ShouldBindJSON(&req); err != nil {
+		response.FailWithError(err, &req, ctx)
+		return
+	}
 }
 
 // Register 注册
 func (b *BaseApi) Register(ctx *gin.Context) {
 	var req systemReq.RegisterRequest
 	if err := ctx.ShouldBindJSON(&req); err != nil {
-		response.FailWithMessage("参数异常,请重新提交", ctx)
+		response.FailWithError(err, &req, ctx)
 		return
 	}
-	roleList := []int{0x000, 0x011, 0x111}
+	roleList := []int{jwt.Customer, jwt.Admin, jwt.SuperAdmin}
 	if !slices.Contains(roleList, req.Role) {
 		response.FailWithMessage("参数异常，不存在的角色", ctx)
 		return
 	}
 
-	response.Ok(ctx)
+	if err := systemUserService.Register(ctx, req); err != nil {
+		response.FailWithMessage(err.Error(), ctx)
+		return
+	}
 
+	response.Ok(ctx)
 }
 
 func (b *BaseApi) Logout(ctx *gin.Context) {}

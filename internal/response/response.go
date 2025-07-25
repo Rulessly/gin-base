@@ -2,6 +2,7 @@ package response
 
 import (
 	"github.com/gin-gonic/gin"
+	"github.com/rulessly/gin-base/pkg/utils/valid"
 	"net/http"
 )
 
@@ -37,4 +38,9 @@ func Fail(ctx *gin.Context) {
 
 func FailWithMessage(msg string, ctx *gin.Context) {
 	result(http.StatusOK, msg, map[string]any{}, ctx)
+}
+
+func FailWithError[T any](err error, obj *T, c *gin.Context) {
+	msg := valid.GetValidMsg(err, obj)
+	FailWithMessage(msg, c)
 }
