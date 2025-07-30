@@ -24,6 +24,8 @@ func (b *BaseApi) Login(ctx *gin.Context) {
 		response.FailWithError(err, &req, ctx)
 		return
 	}
+	
+	response.Ok(ctx)
 }
 
 // Register 注册

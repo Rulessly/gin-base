@@ -8,6 +8,7 @@ import (
 var Config *config
 
 type config struct {
+	Server   ServerConfig   `mapstructure:"server"`
 	Postgres PostgresConfig `mapstructure:"postgres"`
 }
 

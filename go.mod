@@ -5,6 +5,7 @@ go 1.24
 require (
 	entgo.io/ent v0.14.4
 	github.com/gin-gonic/gin v1.10.1
+	github.com/go-playground/validator/v10 v10.27.0
 	github.com/golang-jwt/jwt/v5 v5.2.3
 	github.com/jackc/pgx/v5 v5.7.5
 	github.com/spf13/cast v1.9.2
@@ -15,12 +16,11 @@ require (
 )
 
 require (
-	ariga.io/atlas v0.36.0 // indirect
+	ariga.io/atlas v0.36.1 // indirect
 	github.com/agext/levenshtein v1.2.3 // indirect
-	github.com/apparentlymart/go-textseg/v13 v13.0.0 // indirect
 	github.com/apparentlymart/go-textseg/v15 v15.0.0 // indirect
 	github.com/bmatcuk/doublestar v1.3.4 // indirect
-	github.com/bytedance/sonic v1.13.3 // indirect
+	github.com/bytedance/sonic v1.14.0 // indirect
 	github.com/bytedance/sonic/loader v0.3.0 // indirect
 	github.com/cloudwego/base64x v0.1.5 // indirect
 	github.com/fsnotify/fsnotify v1.9.0 // indirect
@@ -29,7 +29,6 @@ require (
 	github.com/go-openapi/inflect v0.21.2 // indirect
 	github.com/go-playground/locales v0.14.1 // indirect
 	github.com/go-playground/universal-translator v0.18.1 // indirect
-	github.com/go-playground/validator/v10 v10.27.0 // indirect
 	github.com/go-viper/mapstructure/v2 v2.4.0 // indirect
 	github.com/goccy/go-json v0.10.5 // indirect
 	github.com/golang/freetype v0.0.0-20170609003504-e2365dfdc4a0 // indirect
