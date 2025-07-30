@@ -1,10 +1,11 @@
 package captcha
 
 import (
+	"log"
+
 	"github.com/wenlng/go-captcha-assets/resources/imagesv2"
 	"github.com/wenlng/go-captcha-assets/resources/tiles"
 	"github.com/wenlng/go-captcha/v2/slide"
-	"log"
 )
 
 // SlideCapt 滑动验证码
@@ -28,7 +29,7 @@ func init() {
 	}
 
 	var newGraphs = make([]*slide.GraphImage, 0, len(graphs))
-	for i := 0; i < len(graphs); i++ {
+	for i := range graphs {
 		graph := graphs[i]
 		newGraphs = append(newGraphs, &slide.GraphImage{
 			OverlayImage: graph.OverlayImage,

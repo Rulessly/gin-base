@@ -1,21 +1,21 @@
 package system
 
 import (
+	"slices"
+	"time"
+
 	"github.com/gin-gonic/gin"
 	systemReq "github.com/rulessly/gin-base/internal/request/system"
+	systemResp "github.com/rulessly/gin-base/internal/response/system"
+
 	"github.com/rulessly/gin-base/internal/response"
-	"github.com/rulessly/gin-base/internal/service/system"
 	"github.com/rulessly/gin-base/pkg/utils/captcha"
 	"github.com/rulessly/gin-base/pkg/utils/jwt"
 	"github.com/spf13/cast"
-	"slices"
-	"time"
 )
 
 type BaseApi struct {
 }
-
-var systemUserService = system.NewSystemUserService()
 
 // Login 账号密码登录
 func (b *BaseApi) Login(ctx *gin.Context) {
@@ -24,8 +24,21 @@ func (b *BaseApi) Login(ctx *gin.Context) {
 		response.FailWithError(err, &req, ctx)
 		return
 	}
-	
-	response.Ok(ctx)
+	user, err := systemUserService.Login(ctx, req)
+	if err != nil {
+		response.FailWithMessage(err.Error(), ctx)
+		return
+	}
+
+	token, err := jwt.GenerateToken(req.Username, int(user.Role))
+	if err != nil {
+		response.FailWithMessage("登录失败", ctx)
+		return
+	}
+
+	response.OkWithData(systemResp.LoginResponse{
+		Token: token,
+	}, ctx)
 }
 
 // Register 注册
@@ -49,7 +62,8 @@ func (b *BaseApi) Register(ctx *gin.Context) {
 	response.Ok(ctx)
 }
 
-func (b *BaseApi) Logout(ctx *gin.Context) {}
+func (b *BaseApi) Logout(ctx *gin.Context) {
+}
 
 // Captcha 滑块验证码生成
 func (b *BaseApi) Captcha(ctx *gin.Context) {

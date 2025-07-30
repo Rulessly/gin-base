@@ -2,9 +2,9 @@ package system
 
 // LoginRequest Login登录请求数据
 type LoginRequest struct {
-	Username  string `json:"username"`
-	Password  string `json:"password"`
-	Point     string `json:"point"` //滑块验证码用户的坐标
+	Username  string `json:"username" binding:"required" msg:"请正确输入用户名"` //用户名
+	Password  string `json:"password" binding:"required" msg:"请正确输入密码"`  //密码
+	Point     string `json:"point"`                                      //滑块验证码用户的坐标
 	Timestamp string `json:"timestamp"`
 }
 
