@@ -91,12 +91,12 @@ func (b *BaseApi) Captcha(ctx *gin.Context) {
 
 	resp := map[string]any{
 		"timestamp":   cast.ToString(time.Now().Unix()),
-		"imageBase64": mBase64,
-		"titleBase64": tBase64,
-		"titleHeight": dotData.Height,
-		"titleWidth":  dotData.Width,
-		"titleX":      dotData.DX,
-		"titleY":      dotData.DY,
+		"imageBase64": mBase64,        // 背景图片base64
+		"titleBase64": tBase64,        // 滑块图片base64
+		"titleHeight": dotData.Height, // 滑块高度
+		"titleWidth":  dotData.Width,  // 滑块宽度
+		"titleX":      dotData.DX,     // 滑块x轴
+		"titleY":      dotData.DY,     // 滑块y轴
 	}
 
 	response.OkWithData(resp, ctx)
